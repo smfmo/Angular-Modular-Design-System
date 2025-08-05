@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CategoriaComponent {
 
-  private camposForm: FormGroup;
+  public camposForm: FormGroup;
 
   public constructor() {
     this.camposForm = new FormGroup({
@@ -18,9 +18,16 @@ export class CategoriaComponent {
     });
   }
 
-  public salvar() {
-    console.log("Dados do formulário: ", this.camposForm.value);
-    console.log("Está válido?")
+  public salvar(): void {
+    this.camposForm.markAllAsTouched();
+    if(this.camposForm.valid) {
+      console.log('valores digitados: ', this.camposForm.value)
+    }
+  }
+
+  public isCampoInvalido(nomeCampo: string): boolean {
+    const campo = this.camposForm.get(nomeCampo);
+    return campo?.invalid && campo?.touched && campo?.errors?.['required'];
   }
 
 }
