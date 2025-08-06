@@ -1,0 +1,19 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Praias",
+      "descricao": "Praias para tomar aquele banho de mar!"
+    },
+    {
+      "id": 2,
+      "nome": "Bares",
+      "descricao": "Os melhores bares nas melhores localidades para tomar aquela breja!"
+    },
+    {
+      "id": 3,
+      "nome": "Restaurantes",
+      "descricao": "melhores restaurantes para bater aquele rango saboroso!"
+    }
+  ]
+}

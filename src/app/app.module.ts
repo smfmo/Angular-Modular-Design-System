@@ -17,7 +17,7 @@ Serviços aqui ficam disponíveis para toda a aplicação.
 ->bootstrap: Define qual componente será renderizado inicialmente.
 Normalmente o AppComponent (componente raiz)
 
-O angular cria uma instância desse componente no elemente <app-root>
+O angular cria uma instância desse componente no elemento <app-root>
 
 */
 @NgModule({
