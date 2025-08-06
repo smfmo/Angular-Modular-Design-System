@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { provideHttpClient, withFetch} from '@angular/common/http'
 /*
 NgModule Decorator -> Define que a classe é um módulo angular
 -> Declarations: Lista de componentes, diretivas e pipes
@@ -28,7 +29,9 @@ O angular cria uma instância desse componente no elemento <app-root>
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
