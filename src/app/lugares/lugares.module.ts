@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LugaresRoutingModule } from './lugares-routing.module';
 import { LugarComponent } from './lugar/lugar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { LugarComponent } from './lugar/lugar.component';
   ],
   imports: [
     CommonModule,
-    LugaresRoutingModule
+    LugaresRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class LugaresModule { }
