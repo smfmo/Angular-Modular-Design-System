@@ -17,5 +17,9 @@ export class CategoriaService {
   public findAll(): Observable<CategoriaEntity[]> {
     return this.http.get<CategoriaEntity[]>("http://localhost:8080/categorias");
   }
+
+  public findById(idCategoria: number): Observable<CategoriaEntity> {
+    return this.http.get<CategoriaEntity>("http://localhost:8080/categorias/" + idCategoria);
+  }
   
 }
