@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { CategoriaService } from './../../categorias/categoria.service';
+import { CategoriaEntity } from '../../categorias/categoria-entity';
+import { LugarEntity } from '../../lugares/lugar-entity';
+import { LugaresService } from './../../lugares/lugares.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-galeria',
@@ -6,8 +10,22 @@ import { Component } from '@angular/core';
   templateUrl: './galeria.component.html',
   styleUrl: './galeria.component.scss'
 })
-export class GaleriaComponent {
+export class GaleriaComponent implements OnInit{
 
-  public constructor() {}
+  lugares: LugarEntity[] = [];
+  categoriasFiltro: CategoriaEntity[] = [];
 
+  public constructor(
+    private lugarService: LugaresService,
+    private CategoriaService: CategoriaService
+  ) {}
+
+  public ngOnInit(): void {
+    this.CategoriaService.findAll().subscribe({
+      next: (categorias) => this.categoriasFiltro = categorias
+    });
+    this.lugarService.findAll().subscribe({
+      next: (lugaresResposta) => this.lugares = lugaresResposta
+    });
+  }
 }
