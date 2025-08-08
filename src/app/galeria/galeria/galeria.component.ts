@@ -28,4 +28,8 @@ export class GaleriaComponent implements OnInit{
       next: (lugaresResposta) => this.lugares = lugaresResposta
     });
   }
+
+  public getTotalEstrelas(lugar: LugarEntity): string {
+    return '&#9733;'.repeat(lugar.avaliacao || 0) + '&#9734;'.repeat(5 - (lugar.avaliacao || 0));
+  }
 }
