@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LugaresService } from '../lugares.service';
 import { LugarEntity } from '../lugar-entity';
+import { Validators_lugar } from '../validators';
 
 @Component({
   selector: 'app-lugar',
@@ -13,20 +14,14 @@ import { LugarEntity } from '../lugar-entity';
 })
 export class LugarComponent implements OnInit {
 
-  public camposForm: FormGroup;
+  public validator: Validators_lugar;
   public categorias: CategoriaEntity[] = [];
 
   public constructor(
     private categoriaService: CategoriaService,
     private lugarService: LugaresService
   ) {
-    this.camposForm = new FormGroup({
-      nome: new FormControl('', Validators.required),
-      categorias: new FormControl('', Validators.required),
-      localizacao: new FormControl('', Validators.required),
-      url: new FormControl('', Validators.required),
-      avaliacao: new FormControl('', Validators.required),
-    });
+    this.validator = new Validators_lugar();
   }
 
   public ngOnInit(): void {
@@ -37,25 +32,29 @@ export class LugarComponent implements OnInit {
   }
 
   public salvar(): void {
-    const formValue = this.camposForm.value;
+    
+    this.validator.camposForm.markAllAsTouched();
 
-    const lugar: LugarEntity = {
-      nome: formValue.nome,
-      categoria: {
-        nome: formValue.categorias
-      },
-      localizacao: formValue.localizacao,
-      url: formValue.url,
-      avaliacao: formValue.avaliacao
+    if (this.validator.camposForm.valid) {
+      const formValue = this.validator.camposForm.value;
+
+      const lugar: LugarEntity = {
+        nome: formValue.nome,
+        categoria: {
+          nome: formValue.categorias
+        },
+        localizacao: formValue.localizacao,
+        url: formValue.url,
+        avaliacao: formValue.avaliacao
+      }
+
+      this.lugarService.save(lugar).subscribe({
+        next: (lugar) => {
+          console.log("Salvo com sucesso", lugar);
+          this.validator.camposForm.reset();
+        },
+        error: (erro) => console.log("Erro inesperado!", erro)
+      });
     }
-
-    this.lugarService.save(lugar).subscribe({
-      next: (lugar) => {
-        console.log("Salvo com sucesso", lugar);
-        this.camposForm.reset();
-      },
-      error: (erro) => console.log("Erro inesperado!", erro)
-    })
   }
-
 }
