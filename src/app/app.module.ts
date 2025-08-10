@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withFetch} from '@angular/common/http'
+import { provideHttpClient, withFetch} from '@angular/common/http';
+import { LandingpageComponent } from './landingpage/landingpage.component'
 /*
 NgModule Decorator -> Define que a classe é um módulo angular
 -> Declarations: Lista de componentes, diretivas e pipes
@@ -23,7 +24,8 @@ O angular cria uma instância desse componente no elemento <app-root>
 */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,
