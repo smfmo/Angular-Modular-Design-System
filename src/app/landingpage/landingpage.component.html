@@ -9,10 +9,12 @@
         <button (click)="navigate();" *ngIf="isLoggedIn()" 
                 class="bg-white text-blue-400 font-semibold py-3 px-8 rounded-full
                         hover:bg-gray-100 flex space-x-3 items-center">
-            Olá {{ user?.name }}, clique aqui para aproveitar o site!
+                <img class="rounded-full" width="65px" 
+                src="{{user?.picture}}"/> 
+                <p>Olá {{ user?.name }}, clique aqui para aproveitar o site!</p>
         </button>
 
-        <button (click)="isLoggedIn()" *ngIf="!isLoggedIn()"
+        <button (click)="loginByGoogle()" *ngIf="!isLoggedIn()"
                 class="bg-white text-blue-700 font-semibold py-3 px-8 rounded-full
                         hover:bg-gray-100 flex space-x-3 items-center">
             <img width="50px" 
