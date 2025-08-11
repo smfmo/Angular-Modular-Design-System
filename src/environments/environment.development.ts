@@ -1,0 +1,6 @@
+/**
+ * Ambiente de desenvolvimento
+ */
+export const environment = {
+    apiUrl: "http://localhost:8080",
+};

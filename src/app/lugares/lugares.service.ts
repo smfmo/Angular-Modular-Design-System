@@ -2,25 +2,27 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LugarEntity } from './lugar-entity';
 import { Observable } from 'rxjs';
-import { CategoriaEntity } from '../categorias/categoria-entity';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LugaresService {
 
+  public apiUrl: string = environment.apiUrl + "/lugares";
+
   public constructor(private http: HttpClient) { }
 
   public save(lugar: LugarEntity): Observable<LugarEntity> {
-    return this.http.post<LugarEntity>("http://localhost:8080/lugares", lugar);
+    return this.http.post<LugarEntity>(this.apiUrl, lugar);
   }
 
   public findAll(): Observable<LugarEntity[]> {
-    return this.http.get<LugarEntity[]>("http://localhost:8080/lugares");
+    return this.http.get<LugarEntity[]>(this.apiUrl);
   }
 
   public findById(idLugar: number): Observable<LugarEntity> {
-    return this.http.get<LugarEntity>("http://localhost:8080/lugares/" + idLugar);
+    return this.http.get<LugarEntity>(this.apiUrl + "/" + idLugar);
   }
 
   public filtrar(nome: string, categoria: string): Observable<LugarEntity[]> {
@@ -34,7 +36,7 @@ export class LugaresService {
 
     //const params = "nome=" + nome + "&" + "categoria=" + categoria;
   
-    return this.http.get<LugarEntity[]>("http://localhost:8080/lugares/filters", {
+    return this.http.get<LugarEntity[]>(this.apiUrl + "/filters", {
       params: paramsFilter
     });
   }
