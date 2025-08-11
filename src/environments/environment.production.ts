@@ -4,5 +4,5 @@
  */
 export const environment = {
     production: true,
-    apiUrl: "http://descubra-lugares-application-1:8080",
+    apiUrl: "http://localhost:8080",
 };
